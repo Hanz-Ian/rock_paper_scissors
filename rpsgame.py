@@ -4,56 +4,85 @@ import random
 # Create the list of choices
 choices = ["rock", "paper", "scissors"]
 
-# Initialize the computer to pick from the choices list
-computer = random.choice(choices)
+# Initialize player win counts
+player_win = 0
+computer_win = 0
 
-# Initialize the player first before putting it in the loop
-player = None
-
-
-# Create a loop for when a player is picking something else other than the elements in choices
-while player not in choices:
-    player = input("Rock, paper, or scissors?: ").lower() # lower() to match the lowercase elements in choices
+# Initialize a boolean variable to determine the game loop
+game_loop = True
 
 
-# Logic for when both players picked the same choice
-if player == computer:
-    print("computer: ", computer)
-    print("player: ", player)
-    print("It's a tie!")
+# Set the game_loop so start the loop
+while game_loop == True:
 
-# Logics for when player picks rock
-elif player == "rock":
-    if computer == "paper":
-        print("computer: ", computer)
+    # Initialize the player before putting it in the next loop (And set it to None)
+    player = None
+
+    # Initialize the computer to pick from the choices list
+    computer = random.choice(choices)
+
+    # Print the win counts
+    print("\nPlayer wins:", player_win,
+          "\nComputer wins:", computer_win)
+
+    # Create a loop for when a player is picking something else other than the elements in choices
+    while player not in choices:
+        player = input("\nRock, paper, or scissors?: ").lower() # lower() to match the lowercase elements in choices
+
+
+    # Logic for when both players picked the same choice
+    if player == computer:
+        print("\ncomputer: ", computer)
         print("player: ", player)
-        print("Paper beats rock, you lose!")
+        print("\nIt's a tie!")
 
-    if computer == "scissors":
-        print("computer: ", computer)
-        print("player: ", player)
-        print("Rock beats scissors, you win!")
+    # Logics for when player picks rock
+    elif player == "rock":
+        if computer == "paper":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nPaper beats rock, you lose!")
+            computer_win += 1
 
-# Logics for when player picks paper
-elif player == "paper":
-    if computer == "scissors":
-        print("computer: ", computer)
-        print("player: ", player)
-        print("Scissors beats paper, you lose!")
+        if computer == "scissors":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nRock beats scissors, you win!")
+            player_win += 1
 
-    if computer == "rock":
-        print("computer: ", computer)
-        print("player: ", player)
-        print("Paper beats rock, you win!")
+    # Logics for when player picks paper
+    elif player == "paper":
+        if computer == "scissors":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nScissors beats paper, you lose!")
+            computer_win += 1
 
-# Logics for when player picks scissors
-elif player == "scissors":
-    if computer == "rock":
-        print("computer: ", computer)
-        print("player: ", player)
-        print("Rock beats scissors, you lose!")
+        if computer == "rock":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nPaper beats rock, you win!")
+            player_win += 1
 
-    if computer == "paper":
-        print("computer: ", computer)
-        print("player: ", player)
-        print("Scissors beats paper, you win!")
+    # Logics for when player picks scissors
+    elif player == "scissors":
+        if computer == "rock":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nRock beats scissors, you lose!")
+            computer_win += 1
+
+        if computer == "paper":
+            print("\ncomputer: ", computer)
+            print("player: ", player)
+            print("\nScissors beats paper, you win!")
+            player_win += 1
+
+
+    # Set up option for when the player wants to play again
+    play_again = input("\nDo you want to play again? (yes/no): ").lower()
+    if play_again != "yes":
+        break
+
+# Print the end of program
+print("\nEnd of program, thanks for playing!")
